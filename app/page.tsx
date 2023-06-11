@@ -1,18 +1,17 @@
-import { Card, Title, Text, Metric, Grid, Icon } from '@tremor/react';
-import UniversityStatusTable, { University } from './table';
-import UniversityLegend from "./legend"
+import { Card, Title, Text, Metric, Grid, Icon } from "@tremor/react";
+import UniversityStatusTable, { University } from "./table";
+import UniversityLegend from "./legend";
 
-export const dynamic = 'auto';
+export const dynamic = "auto";
 
 async function getUniversityData() {
-  const res = await fetch('http://89.252.131.124:8080/api/university')
+  const res = await fetch("http://89.252.131.124:8080/api/university");
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
 
   const response = await res.json();
-
 
   const data: University[] = response.data.map((item: any) => {
     const user: University = {
@@ -22,24 +21,21 @@ async function getUniversityData() {
       href: item.href,
       scholar: item.scholar,
       created_at: item.created_at,
-      updated_at: item.updated_at
+      updated_at: item.updated_at,
     };
     return user;
   });
 
-
-  return data
+  return data;
 }
 
-interface UniversityParameter {
-
-}
+interface UniversityParameter {}
 
 async function getGlobalMetricInstructor() {
-  const res = await fetch('http://89.252.131.124:8080/api/metric/university')
+  const res = await fetch("http://89.252.131.124:8080/api/metric/university");
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
 
   const response = await res.json();
@@ -49,9 +45,9 @@ async function getGlobalMetricInstructor() {
     parseable: data.parseable,
     notParseable: data.notParseable,
     publicationCount: data.publicationCount,
-    courseCount: data.courseCount
-  }
-  return metric
+    courseCount: data.courseCount,
+  };
+  return metric;
 }
 
 export interface InstructorMetric {
@@ -61,12 +57,16 @@ export interface InstructorMetric {
   courseCount: number;
 }
 
-async function getParameterData(universities: University[]): Promise<UniversityParameter[]> {
-  const calculated: UniversityParameter[] = []
+async function getParameterData(
+  universities: University[]
+): Promise<UniversityParameter[]> {
+  const calculated: UniversityParameter[] = [];
   for (const uni of universities) {
-    const res = await fetch(`http://89.252.131.124:8080/api/university/${uni.id}/parameter`);
+    const res = await fetch(
+      `http://89.252.131.124:8080/api/university/${uni.id}/parameter`
+    );
     if (!res.ok) {
-      throw new Error('Failed to fetch data');
+      throw new Error("Failed to fetch data");
     }
     const response = await res.json();
     const parameter: UniversityParameter = {
@@ -77,28 +77,25 @@ async function getParameterData(universities: University[]): Promise<UniversityP
     };
     calculated.push(parameter);
   }
-  return calculated
+  return calculated;
 }
 
 export default async function IndexPage({
-  searchParams
+  searchParams,
 }: {
   searchParams: { q: string };
 }) {
-  const search = searchParams.q ?? '';
-  const data: University[] = await getUniversityData()
+  const search = searchParams.q ?? "";
+  const data: University[] = await getUniversityData();
   const metric: InstructorMetric = await getGlobalMetricInstructor();
-  console.log(metric);
   // const parameterArray = await getParameterData(data);
-
-
-
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Title>Üniversiteler</Title>
       <Text>
-        Bu sayfada otomatik olarak toplanan üniversitelerin listesini ve metriklerini bulabilirsiniz.
+        Bu sayfada otomatik olarak toplanan üniversitelerin listesini ve
+        metriklerini bulabilirsiniz.
       </Text>
       {/* <Search /> */}
       <Card className="mt-6">
@@ -111,7 +108,11 @@ export default async function IndexPage({
       </Card>
       <div className="mt-6">
         <Grid className="gap-6" numColsSm={2} numColsLg={2}>
-          <Card className="max-w-xs mx-auto" decoration="top" decorationColor="indigo">
+          <Card
+            className="max-w-xs mx-auto"
+            decoration="top"
+            decorationColor="indigo"
+          >
             <Text>Toplam tez sayısı</Text>
             <Metric>{metric.publicationCount} adet</Metric>
           </Card>

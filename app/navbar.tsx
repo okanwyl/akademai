@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { Fragment } from 'react';
-import { usePathname } from 'next/navigation';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Fragment } from "react";
+import { usePathname } from "next/navigation";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 
 const navigation = [
-  { name: 'Üniversiteler', href: '/' },
-  { name: 'Kurslar', href: '/course' },
-  { name: 'Akademisyenler', href: '/instructor' },
+  { name: "Üniversiteler", href: "/" },
+  { name: "Kurslar", href: "/course" },
+  { name: "Akademisyenler", href: "/instructor" },
 ];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
@@ -54,11 +54,11 @@ export default function Navbar() {
                       href={item.href}
                       className={classNames(
                         pathname === item.href
-                          ? 'border-slate-500 text-gray-900'
-                          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                        'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                          ? "border-slate-500 text-gray-900"
+                          : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                        "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                       )}
-                      aria-current={pathname === item.href ? 'page' : undefined}
+                      aria-current={pathname === item.href ? "page" : undefined}
                     >
                       {item.name}
                     </a>
@@ -134,7 +134,7 @@ export default function Navbar() {
               </div> */}
             </div>
           </div>
-{/* 
+          {/* 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pt-2 pb-3">
               {navigation.map((item) => (

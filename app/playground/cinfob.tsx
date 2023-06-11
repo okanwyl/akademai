@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   Accordion,
   AccordionBody,
@@ -9,10 +9,10 @@ import {
   Card,
   Flex,
   Metric,
-  Text
-} from '@tremor/react';
-import Link from 'next/link';
-import { CourseEndpoint } from '../courses/[id]/page';
+  Text,
+} from "@tremor/react";
+import Link from "next/link";
+import { CourseEndpoint } from "../courses/[id]/page";
 
 export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
   return (

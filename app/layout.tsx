@@ -1,15 +1,14 @@
-import './globals.css';
-import Nav from './nav';
-import { Suspense } from 'react';
+import "./globals.css";
+import Nav from "./nav";
+import { Suspense } from "react";
 
 export const metadata = {
-  title: 'Akademai',
-  description:
-    'Akademik içgörülerini çıkar'
+  title: "Akademai",
+  description: "Akademik içgörülerini çıkar",
 };
 
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
