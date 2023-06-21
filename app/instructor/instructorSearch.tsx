@@ -55,7 +55,7 @@ export default function Search({ data }) {
               <TableHeaderCell>Akademisyen Adı</TableHeaderCell>
             </TableRow>
           </TableHead>
-          <TableBody style={{ "background-color": "#ffffff" }}>
+          <TableBody>
             {filteredArray.map((frontMatter) => (
               <TableRow key={frontMatter.id}>
                 <TableCell>

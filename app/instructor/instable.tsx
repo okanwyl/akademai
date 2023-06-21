@@ -20,7 +20,6 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline";
 export default function InstructorAllTable({ data }: { data: Instructor[] }) {
   return (
     <>
-
       <Callout
         className="h-12 mt-4"
         title="Akademisyenlerin üstüne tıklayarak detaylı bilgi alabilirsiniz."
@@ -40,7 +39,7 @@ export default function InstructorAllTable({ data }: { data: Instructor[] }) {
           {data.map((item) => (
             <TableRow
               key={item.filtered_name}
-              onClick={() => (window.location.href = `./courses/${item.id}`)}
+              onClick={()=> (window.location.href = `./instructors/${item.id}`)}
             >
               <TableCell>
                 <Link href={`./instructors/${item.id}`}>

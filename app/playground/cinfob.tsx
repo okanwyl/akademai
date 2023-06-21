@@ -6,6 +6,7 @@ import {
   AccordionList,
   Badge,
   Bold,
+  Button,
   Card,
   Flex,
   Metric,
@@ -19,9 +20,7 @@ import { getTooltip } from "../utils/tooltip";
 export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
   return (
     <Card className="max-w-sm">
-      <Link href={data.href}>
-        <Metric>{data.name}</Metric>
-      </Link>
+      <Metric>{data.name}</Metric>
       <Flex className="mt-4">
         <Text>Ders Kodu</Text>
         <Text>
@@ -31,9 +30,7 @@ export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
       <Flex className="mt-4">
         <Text>Üniversite</Text>
         <Text>
-          <Link href={data.university.href}>
-            <Bold>{data.university.name}</Bold>
-          </Link>
+          <Bold>{data.university.name}</Bold>
         </Text>
       </Flex>
       <Flex className="mt-4">
@@ -42,6 +39,18 @@ export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
           <Badge>{data.university.initials}</Badge>
         </Text>
       </Flex>
+
+      <Flex className="mt-4">
+        <a
+          target="_blank"
+          href={data.href}
+          rel="noopener noreferrer"
+          className="max-w-md mx-auto"
+        >
+          <Button className="max-w-md mx-auto">Kurs sayfasına git</Button>
+        </a>
+      </Flex>
+
       {/* <Flex className="mt-4">
         <Text>Modelin varsayımı</Text>
         <Text>
