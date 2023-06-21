@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import {
   TextInput,
+  Badge,
   Table,
   TableHead,
   TableRow,
@@ -47,22 +48,8 @@ export default function Search({ data }) {
         onChange={handleChange}
       />
 
-      {/* <input
-        className="border-normal-text focus:outline-none border border-solid
-                    box-border w-full rounded-lg
-                    text-normal-text text-sm p-2
-                    dark:border-off-white dark:bg-background-dark-mode dark:text-off-white"
-        placeholder="Kurs Arama"
-        type="text"
-        value={query}
-        onClick={handleClick}
-        onChange={handleChange}
-      /> */}
       {clicked && query != "" && (
-        <Table
-        // className="mt-2 p-2 absolute top-full inset-x-0 max-h-200px "
-        // style={{ "background-color": "#ffffff" }}
-        >
+        <Table>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Ders Adı</TableHeaderCell>
@@ -70,25 +57,20 @@ export default function Search({ data }) {
             </TableRow>
           </TableHead>
 
-          {/* <thead>
-            <tr>
-              <th>Kurs Adı</th>
-              <th>Kodu</th>
-            </tr>
-          </thead> */}
           <TableBody>
             {filteredArray.map((frontMatter) => (
               <TableRow key={frontMatter.id}>
-                <TableCell
-                  // className="bg-white text-normal-text mt-2 leading-4 dark:bg-background-dark-mode last:mb-4"
-                  key={frontMatter.id}
-                >
-                  <td>{frontMatter.name}</td>
+                <TableCell key={frontMatter.id}>
+                  <Link href={`./courses/${frontMatter.id}`}>
+                    {frontMatter.name}
+                  </Link>
                 </TableCell>
                 <TableCell>
-                  <Link href={`./courses/${frontMatter.id}`}>
-                    {frontMatter.code}
-                  </Link>
+                  <Badge>
+                    <Link href={`./courses/${frontMatter.id}`}>
+                      {frontMatter.code}
+                    </Link>
+                  </Badge>
                 </TableCell>
               </TableRow>
             ))}
