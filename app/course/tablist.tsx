@@ -11,13 +11,24 @@ import {
   TableHead,
   TableHeaderCell,
   Bold,
+  Callout,
 } from "@tremor/react";
 import Link from "next/link";
+import { CheckCircleIcon} from "@heroicons/react/24/solid";
+
 import { Course } from "../instructors/[id]/page";
 
 export default function CourseAllTable({ data }: { data: Course[] }) {
   return (
     <>
+      <Callout
+        className="h-12 mt-4"
+        title="Kursların üstüne tıklayarak detaylı bilgi alabilirsiniz."
+        icon={CheckCircleIcon}
+        color="blue"
+      >
+        Turbine reached critical speed. Immediately reduce turbine speed.
+      </Callout>
       <Divider />
       <Title>Bulunan tüm dersler</Title>
       <Table className="mt-4">

@@ -13,6 +13,8 @@ import {
 } from "@tremor/react";
 import Link from "next/link";
 import { CourseEndpoint } from "../courses/[id]/page";
+import { Tooltip } from "@nextui-org/react";
+import { getTooltip } from "../utils/tooltip";
 
 export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
   return (
@@ -40,6 +42,16 @@ export default function CourseInfoCard({ data }: { data: CourseEndpoint }) {
           <Badge>{data.university.initials}</Badge>
         </Text>
       </Flex>
+      {/* <Flex className="mt-4">
+        <Text>Modelin varsayımı</Text>
+        <Text>
+          <Tooltip content={getTooltip(data.type)}>
+            <Badge>
+              <Text>{data.type}</Text>
+            </Badge>
+          </Tooltip>
+        </Text>
+      </Flex> */}
       <Flex className="mt-4">
         <AccordionList className="max-w-md mx-auto">
           <Accordion>

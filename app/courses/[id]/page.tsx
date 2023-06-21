@@ -1,9 +1,10 @@
-import { Card, Flex, Grid, Text, Title } from "@tremor/react";
+import { Callout, Card, Divider, Flex, Grid, Text, Title } from "@tremor/react";
 import { Course, Instructor } from "../../instructors/[id]/page";
 import CourseInfoOnInstructor from "../../playground/cinfo";
 import CourseInfoCard from "../../playground/cinfob";
 import { University } from "../../table";
 import CourseTable from "../../playground/ctable";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 export interface CourseEndpoint {
   id: number;
@@ -13,6 +14,7 @@ export interface CourseEndpoint {
   href: string;
   updated_at: string;
   created_at: string;
+  type: string;
   instructors: Instructor[];
   university: University;
 }
@@ -46,6 +48,7 @@ async function getCourseDetail(id: number) {
     code: data.code,
     info: data.info,
     href: data.href,
+    type: data.type,
     updated_at: data.updated_at,
     created_at: data.created_at,
     instructors: data.instructors,
@@ -63,6 +66,13 @@ export default async function CoursePage({
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
+      <Callout
+        className="h-12 mt-4"
+        title="Derslerin veya akademisyenlerin üstüne tıklayarak daha fazla bilgi alabilirsiniz."
+        icon={CheckCircleIcon}
+        color="blue"
+      ></Callout>
+      <Divider />
       <Grid className="mt-8 gap-6" numColsSm={1} numColsLg={2}>
         <CourseInfoCard data={course} />
         {course.instructors.map((instructor) => (
