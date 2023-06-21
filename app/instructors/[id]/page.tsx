@@ -8,6 +8,8 @@ import {
   BarList,
   Bold,
   DonutChart,
+  Callout,
+  Divider,
 } from "@tremor/react";
 // import Search from "../../search";
 import { University } from "../../table";
@@ -16,6 +18,8 @@ import InstructorInfoCard from "../../playground/icard";
 import CourseInfoInstructorPage from "../../playground/cpage";
 import PublicationTableOnInstructor from "../../playground/ptable";
 import InstructorMetricCard from "../../playground/imetric";
+import AvatarOnInstructor from "../../playground/avatar";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 export interface Course {
   id: number;
@@ -35,6 +39,7 @@ export interface Publication {
   num_citations: string;
   updated_at: string;
   created_at: string;
+  publication_type: string;
 }
 
 export interface Instructor {
@@ -138,13 +143,16 @@ export default async function InstructorsPage({
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
+      <Callout
+        className="h-12 mt-4"
+        title="Derslerin üstüne tıklayarak detaylı bilgi alabilirsiniz."
+        icon={CheckCircleIcon}
+        color="blue"
+      ></Callout>
+      <Divider />
       <Grid className="gap-6" numColsSm={2} numColsLg={3}>
         <PublicationInfoCardInstructor data={ins} interests={interestsArray} />
-        <Card className="gap-6">
-          <Flex alignItems="center" justifyContent="center">
-            <img src={ins.profile_picture} width={250} height={250}></img>
-          </Flex>
-        </Card>
+        <AvatarOnInstructor data={ins} />
         <InstructorInfoCard data={ins} />
       </Grid>
       <Grid className="mt-8 gap-6" numColsSm={2} numColsLg={3}>
