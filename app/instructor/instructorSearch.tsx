@@ -48,24 +48,17 @@ export default function Search({ data }) {
         onChange={handleChange}
       />
       {clicked && query != "" && (
-        <Table
-        // className="mt-2 p-2 absolute top-full inset-x-0 max-h-200px "
-        // style={{ "background-color": "#ffffff" }}
-        >
+        <Table>
           <TableHead>
             <TableRow>
-              <TableHeaderCell>Ders Adı</TableHeaderCell>
-              <TableHeaderCell>Kodu</TableHeaderCell>
+              <TableHeaderCell>Bağlı Olduğu Üniversite</TableHeaderCell>
+              <TableHeaderCell>Akademisyen Adı</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody style={{ "background-color": "#ffffff" }}>
             {filteredArray.map((frontMatter) => (
               <TableRow key={frontMatter.id}>
-                <TableCell
-                  // className="bg-white text-normal-text mt-2 leading-4 dark:bg-background-dark-mode last:mb-4"
-                  // style={{ "background-color": "#ffffff" }}
-                  key={frontMatter.id}
-                >
+                <TableCell>
                   <Badge>{frontMatter.university.name}</Badge>
                 </TableCell>
                 <TableCell>
