@@ -40,16 +40,16 @@ export default function CourseAllTable({ data }: { data: Course[] }) {
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.name}>
+            <TableRow
+              key={item.name}
+              onClick={() => (window.location.href = `./courses/${item.id}`)}
+            >
               <TableCell>
-                <Link href={`./courses/${item.id}`}>
-                  <Text>{item.name}</Text>
-                </Link>
+                <Text>{item.name}</Text>
               </TableCell>
+
               <TableCell>
-                <Link href={`./courses/${item.id}`}>
-                  <Badge color="blue">{item.code}</Badge>
-                </Link>
+                <Badge color="blue">{item.code}</Badge>
               </TableCell>
             </TableRow>
           ))}

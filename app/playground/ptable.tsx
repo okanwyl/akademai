@@ -20,6 +20,19 @@ import { useState } from "react";
 import { Button, Collapse, Tooltip } from "@nextui-org/react";
 import { getTooltip } from "../utils/tooltip";
 
+function openOnNewTab(pub_id: string): string {
+  if (pub_id) {
+    const id = pub_id.split(":");
+
+    const citationUrl =
+      "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=" +
+      id[0] +
+      "&citation_for_view=" +
+      pub_id;
+    window.open(citationUrl, "_blank");
+  }
+  return "#";
+}
 export default function PublicationTableOnInstructor({
   data,
 }: {
@@ -29,38 +42,28 @@ export default function PublicationTableOnInstructor({
   const text = data;
 
   return (
+
     <>
       <Divider />
       <Collapse title="Akademik çalışmaları görmek için tıkla.">
-        <Card>
+      <Card>
           <Title>Akademik çalışmaları</Title>
           <Table className="mt-5">
             <TableHead>
               <TableRow>
                 <TableHeaderCell>Adı</TableHeaderCell>
-                <TableHeaderCell>Modelin varsayımı</TableHeaderCell>
                 <TableHeaderCell>Atıf Sayısı</TableHeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map((item) => (
-                <TableRow key={item.id}>
+                <TableRow
+                  key={item.id}
+                  onClick={() => openOnNewTab(item.author_pub_id)}
+                >
+                  <TableCell className="truncate">{item.title}</TableCell>
                   <TableCell>
-                    <p className="truncate hover:text-clip w-96">
-                      {item.title}
-                    </p>
-                  </TableCell>
-                  <TableCell>
-                    <Tooltip content={getTooltip(item.publication_type)}>
-                      <Badge>
-                        <Text>{item.publication_type}</Text>
-                      </Badge>
-                    </Tooltip>
-                  </TableCell>
-                  <TableCell>
-                    <Badge color="blue">
-                      <Text>{item.num_citations}</Text>
-                    </Badge>
+                    <Text>{item.num_citations}</Text>
                   </TableCell>
                 </TableRow>
               ))}
@@ -69,5 +72,6 @@ export default function PublicationTableOnInstructor({
         </Card>
       </Collapse>
     </>
+ 
   );
 }
