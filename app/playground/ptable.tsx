@@ -17,6 +17,19 @@ import {
 import { Publication } from "../instructors/[id]/page";
 import { useState } from "react";
 
+function openOnNewTab(pub_id: string): string {
+  if (pub_id) {
+    const id = pub_id.split(":");
+
+    const citationUrl =
+      "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=" +
+      id[0] +
+      "&citation_for_view=" +
+      pub_id;
+    window.open(citationUrl, "_blank");
+  }
+  return "#";
+}
 export default function PublicationTableOnInstructor({
   data,
 }: {
@@ -37,7 +50,10 @@ export default function PublicationTableOnInstructor({
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.id}>
+            <TableRow
+              key={item.id}
+              onClick={() => openOnNewTab(item.author_pub_id)}
+            >
               <TableCell className="truncate">{item.title}</TableCell>
               <TableCell>
                 <Text>{item.num_citations}</Text>

@@ -15,24 +15,23 @@ import {
 import Link from "next/link";
 import { Instructor } from "../instructors/[id]/page";
 
-export default function InstructorAllTable({
-  data,
-}: {
-  data: Instructor[];
-}) {
+export default function InstructorAllTable({ data }: { data: Instructor[] }) {
   return (
     <>
       <Title>Bulunan tüm akademisyenler</Title>
       <Table className="mt-4">
         <TableHead>
           <TableRow>
-            <TableHeaderCell>Ders Adı</TableHeaderCell>
+            <TableHeaderCell>Akademisyen Adı</TableHeaderCell>
             <TableHeaderCell>Üniversitesi</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.filtered_name}>
+            <TableRow
+              key={item.filtered_name}
+              onClick={() => (window.location.href = `./courses/${item.id}`)}
+            >
               <TableCell>
                 <Link href={`./instructors/${item.id}`}>
                   <Text>{item.filtered_name}</Text>
