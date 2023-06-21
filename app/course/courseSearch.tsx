@@ -3,6 +3,15 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import {
+  TextInput,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from "@tremor/react";
 
 export default function Search({ data }) {
   const arr = JSON.parse(data);
@@ -30,7 +39,15 @@ export default function Search({ data }) {
 
   return (
     <div className="relative" ref={searchRef}>
-      <input
+      <TextInput
+        placeholder="Kurs arama"
+        type="text"
+        value={query}
+        onClick={handleClick}
+        onChange={handleChange}
+      />
+
+      {/* <input
         className="border-normal-text focus:outline-none border border-solid
                     box-border w-full rounded-lg
                     text-normal-text text-sm p-2
@@ -40,34 +57,43 @@ export default function Search({ data }) {
         value={query}
         onClick={handleClick}
         onChange={handleChange}
-      />
+      /> */}
       {clicked && query != "" && (
-        <table
-          className="mt-2 p-2 absolute top-full inset-x-0 max-h-200px "
-          style={{ "background-color": "#ffffff" }}
+        <Table
+        // className="mt-2 p-2 absolute top-full inset-x-0 max-h-200px "
+        // style={{ "background-color": "#ffffff" }}
         >
-          <thead>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Ders Adı</TableHeaderCell>
+              <TableHeaderCell>Kodu</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+
+          {/* <thead>
             <tr>
               <th>Kurs Adı</th>
               <th>Kodu</th>
             </tr>
-          </thead>
-          <tbody>
+          </thead> */}
+          <TableBody>
             {filteredArray.map((frontMatter) => (
-              <tr
-                className="bg-white text-normal-text mt-2 leading-4 dark:bg-background-dark-mode last:mb-4"
-                key={frontMatter.id}
-              >
-                <td>
+              <TableRow key={frontMatter.id}>
+                <TableCell
+                  // className="bg-white text-normal-text mt-2 leading-4 dark:bg-background-dark-mode last:mb-4"
+                  key={frontMatter.id}
+                >
+                  <td>{frontMatter.name}</td>
+                </TableCell>
+                <TableCell>
                   <Link href={`./courses/${frontMatter.id}`}>
-                    {frontMatter.name}
+                    {frontMatter.code}
                   </Link>
-                </td>
-                <td>{frontMatter.code}</td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       )}
     </div>
   );
