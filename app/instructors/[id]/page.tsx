@@ -20,6 +20,7 @@ import PublicationTableOnInstructor from "../../playground/ptable";
 import InstructorMetricCard from "../../playground/imetric";
 import AvatarOnInstructor from "../../playground/avatar";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import calculateScore from "../../playground/calcscore";
 
 export interface Course {
   id: number;
