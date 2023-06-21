@@ -146,7 +146,7 @@ export default async function InstructorsPage({
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Callout
         className="h-12 mt-4"
-        title="Derslerin üstüne tıklayarak detaylı bilgi alabilirsiniz."
+        title="Derslerin veya akademik çalışmanın üstüne tıklayarak detaylı bilgi alabilirsiniz."
         icon={CheckCircleIcon}
         color="blue"
       ></Callout>
