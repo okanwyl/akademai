@@ -61,7 +61,7 @@ export default function Search({ data }) {
               >
                 <td>
                   <Link href={`./instructors/${frontMatter.id}`}>
-                    {frontMatter.titled_name}
+                    {frontMatter.filtered_name}
                   </Link>
                 </td>
                 <td>{frontMatter.university.name}</td>
