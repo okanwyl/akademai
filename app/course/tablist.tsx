@@ -14,7 +14,7 @@ import {
   Callout,
 } from "@tremor/react";
 import Link from "next/link";
-import { CheckCircleIcon} from "@heroicons/react/24/solid";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 import { Course } from "../instructors/[id]/page";
 
@@ -26,9 +26,7 @@ export default function CourseAllTable({ data }: { data: Course[] }) {
         title="Kursların üstüne tıklayarak detaylı bilgi alabilirsiniz."
         icon={CheckCircleIcon}
         color="blue"
-      >
-        Turbine reached critical speed. Immediately reduce turbine speed.
-      </Callout>
+      ></Callout>
       <Divider />
       <Title>Bulunan tüm dersler</Title>
       <Table className="mt-4">
@@ -45,11 +43,15 @@ export default function CourseAllTable({ data }: { data: Course[] }) {
               onClick={() => (window.location.href = `./courses/${item.id}`)}
             >
               <TableCell>
-                <Text>{item.name}</Text>
+                <Link href={`./courses/${item.id}`}>
+                  <Text>{item.name}</Text>
+                </Link>
               </TableCell>
 
               <TableCell>
-                <Badge color="blue">{item.code}</Badge>
+                <Link href={`./courses/${item.id}`}>
+                  <Badge color="blue">{item.code}</Badge>
+                </Link>
               </TableCell>
             </TableRow>
           ))}

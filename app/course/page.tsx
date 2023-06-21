@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Card, Text, Metric, Tab } from "@tremor/react";
+import { Card, Text, Metric, Tab, Divider } from "@tremor/react";
 import { Course } from "../instructors/[id]/page";
 import CourseAllTable from "./tablist";
 
@@ -24,6 +24,7 @@ export default async function CourseTablePage() {
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Search data={JSON.stringify(courses)} />
+      <Divider/>
       <CourseAllTable data={courses} />
     </main>
   );

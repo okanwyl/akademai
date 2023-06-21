@@ -3,6 +3,16 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import {
+  TextInput,
+  Badge,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from "@tremor/react";
 
 export default function Search({ data }) {
   const arr = JSON.parse(data);
@@ -30,44 +40,42 @@ export default function Search({ data }) {
 
   return (
     <div className="relative" ref={searchRef}>
-      <input
-        className="border-normal-text focus:outline-none border border-solid
-                    box-border w-full rounded-lg
-                    text-normal-text text-sm p-2
-                    dark:border-off-white dark:bg-background-dark-mode dark:text-off-white"
-        placeholder="Kurs Arama"
+      <TextInput
+        placeholder="Kurs arama"
         type="text"
         value={query}
         onClick={handleClick}
         onChange={handleChange}
       />
+
       {clicked && query != "" && (
-        <table
-          className="mt-2 p-2 absolute top-full inset-x-0 max-h-200px "
-          style={{ "background-color": "#ffffff" }}
-        >
-          <thead>
-            <tr>
-              <th>Kurs Adı</th>
-              <th>Kodu</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Ders Adı</TableHeaderCell>
+              <TableHeaderCell>Kodu</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
             {filteredArray.map((frontMatter) => (
-              <tr
-                className="bg-white text-normal-text mt-2 leading-4 dark:bg-background-dark-mode last:mb-4"
-                key={frontMatter.id}
-              >
-                <td>
+              <TableRow key={frontMatter.id}>
+                <TableCell key={frontMatter.id}>
                   <Link href={`./courses/${frontMatter.id}`}>
                     {frontMatter.name}
                   </Link>
-                </td>
-                <td>{frontMatter.code}</td>
-              </tr>
+                </TableCell>
+                <TableCell>
+                  <Badge>
+                    <Link href={`./courses/${frontMatter.id}`}>
+                      {frontMatter.code}
+                    </Link>
+                  </Badge>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       )}
     </div>
   );
