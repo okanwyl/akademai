@@ -32,16 +32,13 @@ export default function InstructorAllTable({ data }: { data: Instructor[] }) {
       <Table className="mt-4">
         <TableHead>
           <TableRow>
-            <TableHeaderCell>Akademisyen Adı</TableHeaderCell>
+            <TableHeaderCell>Ders Adı</TableHeaderCell>
             <TableHeaderCell>Üniversitesi</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow
-              key={item.filtered_name}
-              onClick={() => (window.location.href = `./courses/${item.id}`)}
-            >
+            <TableRow key={item.filtered_name}>
               <TableCell>
                 <Link href={`./instructors/${item.id}`}>
                   <Text>{item.filtered_name}</Text>

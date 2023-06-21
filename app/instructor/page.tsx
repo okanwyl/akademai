@@ -1,6 +1,6 @@
 import { Instructor } from "../instructors/[id]/page";
 import InstructorAllTable from "./instable";
-import Search from "./instructorSearch";
+
 async function getInstructors(): Promise<Instructor[]> {
   const res = await fetch(`http://89.252.131.124:8080/api/instructor/`);
 
@@ -20,8 +20,6 @@ export default async function InstructorTablePage() {
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Search data={JSON.stringify(instructor)} />
-
       <InstructorAllTable data={instructor} />
     </main>
   );
